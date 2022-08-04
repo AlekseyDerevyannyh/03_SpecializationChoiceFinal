@@ -38,7 +38,11 @@ string[] TrimString (string[] array, int trimLength) {
 string[] GetStringArrayFromConsole () {
 	Write("Введите количество элементов строкового массива: ");
 	int size;
-	if(!int.TryParse(ReadLine(), out size)) {
+	if (!int.TryParse(ReadLine(), out size)) {
+		Write("Ошибка ввода!");
+		return new string[]{""};
+	}
+	if (size < 1) {
 		Write("Ошибка ввода!");
 		return new string[]{""};
 	}
