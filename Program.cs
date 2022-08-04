@@ -13,6 +13,12 @@ using static System.Console;
 
 Clear();
 
+string[] arrayString = GetStringArrayFromConsole();
+WriteLine();
+PrintStringArray(arrayString);
+Write(" -> ");
+PrintStringArray(TrimString(arrayString, 3));
+
 string[] TrimString (string[] array, int trimLength) {
 	int resultSize = 0;
 	for (int i = 0; i < array.Length; i ++)
@@ -27,4 +33,26 @@ string[] TrimString (string[] array, int trimLength) {
 			resultIndex ++;
 		}
 	return result;
+}
+
+string[] GetStringArrayFromConsole () {
+	Write("Введите количество элементов строкового массива: ");
+	int size;
+	if(!int.TryParse(ReadLine(), out size)) {
+		Write("Ошибка ввода!");
+		return new string[]{""};
+	}
+	string[] result = new string[size];
+	for (int i = 0; i < size; i ++) {
+		Write($"Введите {i + 1} элемент строкового массива: ");
+		result[i] = ReadLine();
+	}
+	return result;
+}
+
+void PrintStringArray (string[] array) {
+	Write("[");
+	for (int i = 0; i < array.Length - 1; i ++) 
+		Write($"{array[i]}, ");
+	Write($"{array[array.Length - 1]}]");
 }
